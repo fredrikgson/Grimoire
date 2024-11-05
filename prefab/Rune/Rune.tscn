@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://e46o5hxvn0b7"]
+[gd_scene load_steps=6 format=3 uid="uid://e46o5hxvn0b7"]
 
 [ext_resource type="Script" path="res://prefab/Rune/Rune.gd" id="1_rvcti"]
 [ext_resource type="Texture2D" uid="uid://cm1341ixt3y1t" path="res://assets/rune.png" id="2_x32hw"]
 [ext_resource type="PackedScene" uid="uid://t7djyvhr7eoc" path="res://prefab/Rune/RunePoint.tscn" id="3_idess"]
+[ext_resource type="Texture2D" uid="uid://c4cibelug273u" path="res://assets/line_texture.png" id="4_yljv0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_16n3l"]
 radius = 174.0
@@ -36,6 +37,8 @@ position = Vector2(-96, 0)
 id = 3
 
 [node name="Line2D" type="Line2D" parent="."]
+texture = ExtResource("4_yljv0")
+texture_mode = 2
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2

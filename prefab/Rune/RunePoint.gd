@@ -3,6 +3,7 @@ class_name RunePoint
 
 @export var id:int
 @onready var sprite:Sprite2D = $Sprite2D
+@onready var particles:CPUParticles2D = $CPUParticles2D
 
 var highlight_tween:Tween
 const default_scale = Vector2(1, 1)
@@ -34,3 +35,6 @@ func unhighlight():
 		highlight_tween.kill()
 	highlight_tween = get_tree().create_tween()
 	highlight_tween.tween_property(sprite, "scale", default_scale, 0.05)
+
+func emit_particles():
+	particles.emitting = true
