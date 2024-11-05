@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://e46o5hxvn0b7"]
+
+[ext_resource type="Script" path="res://prefab/Rune/Rune.gd" id="1_rvcti"]
+[ext_resource type="Texture2D" uid="uid://cm1341ixt3y1t" path="res://assets/rune.png" id="2_x32hw"]
+[ext_resource type="PackedScene" uid="uid://t7djyvhr7eoc" path="res://prefab/Rune/RunePoint.tscn" id="3_idess"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_16n3l"]
+radius = 174.0
+
+[node name="Rune" type="Area2D" node_paths=PackedStringArray("points_parent")]
+script = ExtResource("1_rvcti")
+points_parent = NodePath("Sprite2D/Points")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_16n3l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_x32hw")
+offset = Vector2(0, 8)
+
+[node name="Points" type="Node2D" parent="Sprite2D"]
+
+[node name="RunePoint0" parent="Sprite2D/Points" instance=ExtResource("3_idess")]
+position = Vector2(0, -96)
+
+[node name="RunePoint1" parent="Sprite2D/Points" instance=ExtResource("3_idess")]
+position = Vector2(96, 0)
+id = 1
+
+[node name="RunePoint2" parent="Sprite2D/Points" instance=ExtResource("3_idess")]
+position = Vector2(0, 96)
+id = 2
+
+[node name="RunePoint3" parent="Sprite2D/Points" instance=ExtResource("3_idess")]
+position = Vector2(-96, 0)
+id = 3
+
+[node name="Line2D" type="Line2D" parent="."]
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PreventNewPointTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://t7djyvhr7eoc"]
+
+[ext_resource type="Script" path="res://prefab/Rune/RunePoint.gd" id="1_ig27p"]
+[ext_resource type="Texture2D" uid="uid://c1oqdgsj6nxi2" path="res://assets/rune_point.png" id="1_p4fn1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7fr6y"]
+radius = 32.0
+
+[node name="RunePoint" type="Area2D"]
+script = ExtResource("1_ig27p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_p4fn1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7fr6y")

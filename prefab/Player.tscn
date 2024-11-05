@@ -1,0 +1,143 @@
+[gd_scene load_steps=9 format=3 uid="uid://ckmmljp5aaanf"]
+
+[ext_resource type="Texture2D" uid="uid://brhbsbd24hgc4" path="res://assets/player.png" id="1_6rviu"]
+[ext_resource type="Texture2D" uid="uid://fgra5e0fiiid" path="res://assets/grimoire_small.png" id="2_4q4oe"]
+
+[sub_resource type="Animation" id="Animation_11qci"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.94, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_qkwj2"]
+resource_name = "idle"
+length = 2.4
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.94, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.4, 2.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kx81k"]
+_data = {
+"RESET": SubResource("Animation_11qci"),
+"idle": SubResource("Animation_qkwj2")
+}
+
+[sub_resource type="Animation" id="Animation_1esf7"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-126, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-208, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_tij2i"]
+resource_name = "idle"
+length = 3.2
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-126, -0.25, 0, 0.25, 0, -126, -0.25, 0, 0.25, 0, -126, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.6, 3.2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-208, -0.25, 0, 0.25, 0, -240, -0.25, 0, 0.25, 0, -208, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.6, 3.2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_03uwo"]
+_data = {
+"RESET": SubResource("Animation_1esf7"),
+"idle": SubResource("Animation_tij2i")
+}
+
+[node name="Player" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1, 0.94)
+texture = ExtResource("1_6rviu")
+offset = Vector2(0, -128)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_kx81k")
+}
+autoplay = "idle"
+
+[node name="Grimoire" type="Sprite2D" parent="."]
+position = Vector2(-126, -208)
+texture = ExtResource("2_4q4oe")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Grimoire"]
+libraries = {
+"": SubResource("AnimationLibrary_03uwo")
+}
+autoplay = "idle"
