@@ -37,7 +37,6 @@ position = Vector2(-96, 0)
 id = 3
 
 [node name="Line2D" type="Line2D" parent="."]
-width = 16.0
 texture = ExtResource("4_yljv0")
 texture_mode = 2
 joint_mode = 2

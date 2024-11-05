@@ -53,12 +53,14 @@ func add_first_point(rune_point:RunePoint):
 	line.add_point(rune_point.position)
 	line.add_point(self.get_local_mouse_position())
 	rune_points_in_line.append(rune_point)
+	rune_point.emit_particles()
 
 func add_point(rune_point:RunePoint):
 	if not rune_points_in_line.has(rune_point):
 		line.add_point(self.get_local_mouse_position())
 		line.points[-2] = rune_point.position
 		rune_points_in_line.append(rune_point)
+		rune_point.emit_particles()
 
 func reset_line():
 	rune_points_in_line.clear()
