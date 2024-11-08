@@ -161,6 +161,7 @@ anchors_preset = 0
 offset_top = -128.0
 offset_right = 40.0
 offset_bottom = -88.0
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="IconFlasher/Text"]
 self_modulate = Color(1, 1, 1, 0)
