@@ -1,12 +1,106 @@
-[gd_scene load_steps=6 format=3 uid="uid://e46o5hxvn0b7"]
+[gd_scene load_steps=13 format=3 uid="uid://e46o5hxvn0b7"]
 
 [ext_resource type="Script" path="res://prefab/Rune/Rune.gd" id="1_rvcti"]
 [ext_resource type="Texture2D" uid="uid://cm1341ixt3y1t" path="res://assets/rune.png" id="2_x32hw"]
 [ext_resource type="PackedScene" uid="uid://t7djyvhr7eoc" path="res://prefab/Rune/RunePoint.tscn" id="3_idess"]
 [ext_resource type="Texture2D" uid="uid://c4cibelug273u" path="res://assets/line_texture.png" id="4_yljv0"]
+[ext_resource type="Script" path="res://prefab/Rune/IconFlasher.gd" id="5_2oq0l"]
+[ext_resource type="Texture2D" uid="uid://bis2xm0hpo4qs" path="res://assets/spells/icons/flame_strike.png" id="6_8lir2"]
+[ext_resource type="FontFile" uid="uid://cnuepki5rixhk" path="res://font/Namaku.ttf" id="7_dqbal"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_16n3l"]
 radius = 174.0
+
+[sub_resource type="Animation" id="Animation_1y6qw"]
+resource_name = "flash"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.4, 1.4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Text/Label:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bd2ey"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.2, 1.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Text/Label:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_36x5y"]
+_data = {
+"RESET": SubResource("Animation_bd2ey"),
+"flash": SubResource("Animation_1y6qw")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_p11s6"]
+font = ExtResource("7_dqbal")
+font_size = 48
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Rune" type="Area2D" node_paths=PackedStringArray("points_parent")]
 script = ExtResource("1_rvcti")
@@ -46,3 +140,44 @@ end_cap_mode = 2
 [node name="PreventNewPointTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="IconFlasher" type="Node2D" parent="."]
+script = ExtResource("5_2oq0l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="IconFlasher"]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_36x5y")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="IconFlasher"]
+self_modulate = Color(1, 1, 1, 0)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6_8lir2")
+
+[node name="Text" type="Control" parent="IconFlasher"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -128.0
+offset_right = 40.0
+offset_bottom = -88.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="IconFlasher/Text"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -47.0
+offset_right = 135.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Flame Strike"
+label_settings = SubResource("LabelSettings_p11s6")
+horizontal_alignment = 1
+vertical_alignment = 1

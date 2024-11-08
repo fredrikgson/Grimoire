@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Spell" load_steps=3 format=3 uid="uid://d4qte3t8up3s"]
+
+[ext_resource type="Script" path="res://resources/Spell.gd" id="1_2266u"]
+[ext_resource type="Texture2D" uid="uid://cc4lwj7k6xhko" path="res://assets/spells/icons/frost_shard.png" id="1_g7hd4"]
+
+[resource]
+script = ExtResource("1_2266u")
+name = "Frost Shard"
+icon = ExtResource("1_g7hd4")

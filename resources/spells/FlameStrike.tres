@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Spell" load_steps=3 format=3 uid="uid://c2nve77osrv7x"]
+
+[ext_resource type="Script" path="res://resources/Spell.gd" id="1_80ufr"]
+[ext_resource type="Texture2D" uid="uid://bis2xm0hpo4qs" path="res://assets/spells/icons/flame_strike.png" id="1_eo7wo"]
+
+[resource]
+script = ExtResource("1_80ufr")
+name = "Flame Strike"
+icon = ExtResource("1_eo7wo")
