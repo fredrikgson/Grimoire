@@ -39,7 +39,8 @@ func _input(event):
 		if line_has_points():
 			if event.button_index == MOUSE_BUTTON_LEFT and len(rune_points_in_line) > 1:
 				prevent_new_point_timer.start()
-				print("Do spell " + str(normalize_points_sequence(rune_points_in_line)))
+				var spell = SpellManager.get_spell(normalize_points_sequence(rune_points_in_line))
+				print(spell)
 				reset_line()
 			elif event.button_index == MOUSE_BUTTON_RIGHT:
 				prevent_new_point_timer.start()
