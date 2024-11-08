@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Spell" load_steps=3 format=3 uid="uid://drxdgf3452x10"]
+
+[ext_resource type="Texture2D" uid="uid://cbs024ermtqvp" path="res://assets/spells/icons/drain_life.png" id="1_bim56"]
+[ext_resource type="Script" path="res://resources/Spell.gd" id="1_syfoh"]
+
+[resource]
+script = ExtResource("1_syfoh")
+name = "Drain Life"
+icon = ExtResource("1_bim56")

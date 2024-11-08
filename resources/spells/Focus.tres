@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Spell" load_steps=3 format=3 uid="uid://hqsdl0vcdp3d"]
+
+[ext_resource type="Texture2D" uid="uid://dhn3i0iueohpl" path="res://assets/spells/icons/focus.png" id="1_teihc"]
+[ext_resource type="Script" path="res://resources/Spell.gd" id="1_tpkxd"]
+
+[resource]
+script = ExtResource("1_tpkxd")
+name = "Focus"
+icon = ExtResource("1_teihc")

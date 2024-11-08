@@ -16,29 +16,33 @@ const spell_keys:Array[String] = [
 	"2013",
 	"2103",
 ]
-const spell_values:Array[String] = [
-	"Flame Strike",
-	"Lightning Bolt",
-	"Frost Shard",
-	"Drain Life",
-	"Heal",
-	"Focus",
-	"Weaken",
-	"Bolster",
+const spell_values:Array[Spell] = [
+	preload("res://resources/spells/Bolster.tres"),
+	preload("res://resources/spells/DrainLife.tres"),
+	preload("res://resources/spells/FlameStrike.tres"),
+	preload("res://resources/spells/Focus.tres"),
+	preload("res://resources/spells/FrostShard.tres"),
+	preload("res://resources/spells/Heal.tres"),
+	preload("res://resources/spells/LightningBolt.tres"),
+	preload("res://resources/spells/Weaken.tres"),
 ]
+const spark_spell:Spell = preload("res://resources/spells/Spark.tres")
 
 func _ready() -> void:
 	create_spell_mappings()
 
-func get_spell(sequence:Array[int]) -> String: # String for now - should prob be complex type later
+func get_spell(sequence:Array[int]) -> Spell: # String for now - should prob be complex type later
+	if len(sequence) < 4:
+		return spark_spell
+	
 	var key:String = ""
 	for point in sequence:
 		key += str(point)
 	
-	if spell_mappings.has(key):
-		return spell_mappings[key]
+	if not spell_mappings.has(key):
+		return spark_spell
 	
-	return "No spell here"
+	return spell_mappings[key]
 	
 
 func create_spell_mappings() -> void:
