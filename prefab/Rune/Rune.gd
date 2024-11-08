@@ -2,8 +2,10 @@ extends Area2D
 class_name Rune
 
 @export var points_parent:Node2D
+
 @onready var line:Line2D = $Line2D
 @onready var prevent_new_point_timer = $PreventNewPointTimer
+@onready var icon_flasher:RuneIconFlasher = $IconFlasher
 
 var rune_points:Dictionary
 var rune_points_in_line:Array[RunePoint]
@@ -40,7 +42,7 @@ func _input(event):
 			if event.button_index == MOUSE_BUTTON_LEFT and len(rune_points_in_line) > 1:
 				prevent_new_point_timer.start()
 				var spell:Spell = SpellManager.get_spell(normalize_points_sequence(rune_points_in_line))
-				print(spell.name)
+				icon_flasher.flash_spell(spell)
 				reset_line()
 			elif event.button_index == MOUSE_BUTTON_RIGHT:
 				prevent_new_point_timer.start()
